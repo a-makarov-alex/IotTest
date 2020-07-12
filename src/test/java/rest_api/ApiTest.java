@@ -1,60 +1,82 @@
 package rest_api;
 
-import org.json.JSONObject;
 import io.restassured.RestAssured;
-import io.restassured.http.Header;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ApiTest {
-    public static final String URL = "https://httpbin.org/";
+    private static final String URL = "https://httpbin.org/";
+    private static final String QUERY_KEY = "someKey";
+    private static final String QUERY_VALUE = "someValue";
 
     @Test
-    public void testGet() {
-        Response response = RestAssured.get(URL + "/get");//then().assertThat().body("headers[0].Accept", equalTo("application/json"));
-
-        System.out.println(response.asString());
-        List<Header> headers = response.getHeaders().asList();
-        System.out.println("----------- HEADERS ---------------");
-        for (Header h : headers) {
-            System.out.println(h.getName());
-        }
-
+    public void testGetQuery() {
+        RestAssured.given()
+                .baseUri(URL)
+                .basePath("get")
+                .queryParam(QUERY_KEY, QUERY_VALUE)
+                .when()
+                .get()
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
     }
 
     @Test
-    public void testPost() {
-        RequestSpecification request = RestAssured.given();
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("Name", "Vasya");
-        requestBody.put("Age", "15");
-
-        request.body(requestBody);
-
-        Response response1 = request.post(URL + "post");
-        //Assert.assertEquals(response1.getStatusCode(), 200);
-
-        System.out.println(response1.asString());
-
-        /*response1.then()
+    public void testPostQuery() {
+        RestAssured.given()
+                .baseUri(URL)
+                .basePath("post")
+                .queryParam(QUERY_KEY, QUERY_VALUE)
+                .when()
+                .post()
+                .then()
+                .assertThat()
                 .statusCode(200)
-                .body("data.map.Name",equalTo("Vasya"))
-                .body("data.map.Age",equalTo("15"));
-         */
+                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+    }
 
-        /*Response response = RestAssured.post(URL + "/post");//then().assertThat().body("headers[0].Accept", equalTo("application/json"));
-        System.out.println(response.asString());
-        List<Header> headers = response.getHeaders().asList();
-        System.out.println("----------- HEADERS ---------------");
-        for (Header h : headers) {
-            System.out.println(h.getName());
-        }*/
+    @Test
+    public void testPutQuery() {
+        RestAssured.given()
+                .baseUri(URL)
+                .basePath("put")
+                .queryParam(QUERY_KEY, QUERY_VALUE)
+                .when()
+                .put()
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+    }
 
+    @Test
+    public void testPatchQuery() {
+        RestAssured.given()
+                .baseUri(URL)
+                .basePath("patch")
+                .queryParam(QUERY_KEY, QUERY_VALUE)
+                .when()
+                .patch()
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+    }
+
+    @Test
+    public void testDeleteQuery() {
+        RestAssured.given()
+                .baseUri(URL)
+                .basePath("delete")
+                .queryParam(QUERY_KEY, QUERY_VALUE)
+                .when()
+                .delete()
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
     }
 }
