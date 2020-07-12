@@ -15,5 +15,5 @@ Scenario Outline: Login
   And I click on the login submit button
   Then I see that some another page is opened
   Examples:
-    | userName     | password  |
-    | SomeTestUser | qweQWE123 |
+    | userName | password  |
+    | NewUser  | qweQWE123 |
