@@ -43,13 +43,11 @@ public class ApiTest {
         RestAssured.given()
                 .baseUri(URL)
                 .basePath("put")
-                .queryParam(QUERY_KEY, QUERY_VALUE)
                 .when()
                 .put()
                 .then()
                 .assertThat()
-                .statusCode(200)
-                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+                .statusCode(200);
     }
 
     @Test
@@ -57,13 +55,11 @@ public class ApiTest {
         RestAssured.given()
                 .baseUri(URL)
                 .basePath("patch")
-                .queryParam(QUERY_KEY, QUERY_VALUE)
                 .when()
                 .patch()
                 .then()
                 .assertThat()
-                .statusCode(200)
-                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+                .statusCode(200);
     }
 
     @Test
@@ -71,12 +67,10 @@ public class ApiTest {
         RestAssured.given()
                 .baseUri(URL)
                 .basePath("delete")
-                .queryParam(QUERY_KEY, QUERY_VALUE)
                 .when()
                 .delete()
                 .then()
                 .assertThat()
-                .statusCode(200)
-                .body("args." + QUERY_KEY, equalTo(QUERY_VALUE));
+                .statusCode(200);
     }
 }
