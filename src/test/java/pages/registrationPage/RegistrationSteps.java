@@ -9,9 +9,18 @@ public class RegistrationSteps {
         this.registrationPage = new RegistrationPage();
     }
 
-    @When("I fill the form for First Name")
-    public void iFillTheFormForFirstName() {
-        System.out.println("STEP 3");
-        this.registrationPage.fillTheFormForFirstName("FIRST NAME");
+    @When("I fill the register form with valid data")
+    public void iFillTheRegisterFormWithValidData() {
+        this.registrationPage.fillTheRegisterFormWithValidData();
+    }
+
+    @When("I click on the submit button")
+    public void iClickOnTheSubmitButton() {
+        this.registrationPage.clickOnTheSubmitButton();
+    }
+
+    @Then("I see a message that registration finished successfully")
+    public void iSeeAMessageThatRegistrationFinishedSuccessfully() {
+        this.registrationPage.checkRegistrationFinishedMessage();
     }
 }

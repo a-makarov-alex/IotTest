@@ -16,7 +16,6 @@ public class HomeSteps {
 
     @When("I click on the register tab")
     public void iClickOnTheRegisterTab() {
-        System.out.println("STEP 2");
         this.homePage.clickOnTheRegisterTab();
 
     }

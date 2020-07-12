@@ -14,20 +14,15 @@ public class Wait {
         this.driver = driver;
     }
 
-    private void waitUntilCondition(ExpectedCondition condition, String timeoutMessage, int timeout) {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
-        wait.withMessage(timeoutMessage);
-        wait.until(condition);
-    }
-
     public void forLoading(int timeout){
         ExpectedCondition<Object> condition = ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";");
         String timeoutMessage = "Page didn't load after " + Integer.toString(timeout) + " seconds.";
         waitUntilCondition(condition, timeoutMessage, timeout);
     }
 
-    public void waitSeconds(int timeout) {
+    private void waitUntilCondition(ExpectedCondition condition, String timeoutMessage, int timeout) {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
-        wait.withTimeout(5, TimeUnit.SECONDS);
+        wait.withMessage(timeoutMessage);
+        wait.until(condition);
     }
 }
