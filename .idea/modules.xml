@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IotTest.iml" filepath="$PROJECT_DIR$/IotTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apiTestsModule/apiTestsModule.iml" filepath="$PROJECT_DIR$/apiTestsModule/apiTestsModule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uiTestsModule/uiTestsModule.iml" filepath="$PROJECT_DIR$/uiTestsModule/uiTestsModule.iml" />
     </modules>
   </component>
 </project>

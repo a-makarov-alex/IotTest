@@ -6,11 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="IotTest" />
+        <module name="apiTestsModule" />
+        <module name="uiTestsModule" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="apiTestsModule" target="1.8" />
       <module name="IotTest" target="1.8" />
+      <module name="uiTestsModule" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
